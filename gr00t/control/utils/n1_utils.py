@@ -175,7 +175,9 @@ def prepare_observation_for_eval(robot_model: RobotModel, obs: dict) -> dict:
     return obs
 
 
-def prepare_gym_space_for_eval(robot_model: RobotModel, gym_space: gym.spaces.Dict) -> gym.spaces.Dict:
+def prepare_gym_space_for_eval(
+    robot_model: RobotModel, gym_space: gym.spaces.Dict
+) -> gym.spaces.Dict:
     """Extend a gym Dict space with the joint-group keys used during evaluation."""
     left_arm_space = spaces.Box(
         low=-np.inf,

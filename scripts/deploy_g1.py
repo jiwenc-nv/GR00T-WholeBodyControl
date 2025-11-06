@@ -240,9 +240,6 @@ class G1Deployment:
         else:
             cmd.append("--no-enable_gravity_compensation")
 
-        # Joint safety mode configuration
-        cmd.extend(["--joint_safety_mode", self.config.joint_safety_mode])
-
         if not self._run_in_tmux("control", cmd, wait_time=3, pane_index=0):
             print("ERROR: Control loop failed to start!")
             self.cleanup()
@@ -370,7 +367,6 @@ class G1Deployment:
         print(f"  Gravity Compensation: {self.config.enable_gravity_compensation}")
         if self.config.enable_gravity_compensation:
             print(f"  Gravity Comp Joints: {self.config.gravity_compensation_joints}")
-        print(f"  Joint Safety Mode: {self.config.joint_safety_mode}")
         print(
             f"  Webcam Recording: {self.config.enable_webcam_recording and self.config.env_type == 'real'}"
         )

@@ -490,7 +490,6 @@ class G1SyncEnv(SyncEnv):
             self.robot_model,
             enable_viz=False,
             env_type="sim",  # G1SyncEnv is always simulation
-            safety_mode=kwargs.get("joint_safety_mode", "kill"),
         )
         self.safety_monitor.ramp_duration_steps = 0
         self.safety_monitor.startup_complete = True
@@ -570,6 +569,7 @@ def create_gym_sync_env_class(env, robot, robot_alias, wbc_version):
         id=id_name,  # Unique ID for the environment
         entry_point=f"gr00t.control.envs.robocasa.sync_env:{class_name}",
     )
+
 
 WBC_VERSION = "gear_wbc"
 
