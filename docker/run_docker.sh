@@ -404,7 +404,8 @@ DOCKER_RUN_ARGS="--hostname $HOSTNAME \
     -v $HOME/.ssh:$DOCKER_HOME_DIR/.ssh \
     -v $HOME/.gear:$DOCKER_HOME_DIR/.gear \
     -v $HOME/.Xauthority:$DOCKER_HOME_DIR/.Xauthority \
-    -v $PROJECT_DIR:$DOCKER_HOME_DIR/Projects/$(basename "$PROJECT_DIR")
+    -v $PROJECT_DIR:$DOCKER_HOME_DIR/Projects/$(basename "$PROJECT_DIR") \
+    -v $HOME/.cloudxr:$DOCKER_HOME_DIR/.cloudxr \
     --device /dev/snd \
     --group-add audio \
     -e PULSE_SERVER=unix:/run/user/$(id -u)/pulse/native \
