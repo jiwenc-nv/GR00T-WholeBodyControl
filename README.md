@@ -1,6 +1,6 @@
 # gr00t_wbc
 
-Software stack for loco-manipulation experiments across multiple humanoid platforms, with primary support for the Unitree G1. This repository provides whole-body control policies, a teleoperation stack, and a data exporter. 
+Software stack for loco-manipulation experiments across multiple humanoid platforms, with primary support for the Unitree G1. This repository provides whole-body control policies, a teleoperation stack, and a data exporter.
 
 ---
 
@@ -23,7 +23,7 @@ Clone the repository:
 ```bash
 mkdir -p ~/Projects
 cd ~/Projects
-git clone https://github.com/NVlabs/gr00t_wbc.git
+git clone --recurse-submodules https://github.com/jiwenc-nv/GR00T-WholeBodyControl.git
 cd gr00t_wbc
 ```
 
@@ -75,20 +75,23 @@ Keyboard shortcuts (terminal window):
 
 ## Running the Teleoperation Stack
 
-The teleoperation policy primarily uses Pico controllers for coordinated hand and body control. It also supports other teleoperation devices, including LeapMotion and HTC Vive with Nintendo Switch Joy-Con controllers.
+The teleoperation policy primarily uses XR controllers for coordinated hand and body control. It also supports other teleoperation devices, including LeapMotion and HTC Vive with Nintendo Switch Joy-Con controllers.
 
 Keep `run_g1_control_loop.py` running, and in another terminal run:
 
 ```bash
-python gr00t_wbc/control/main/teleop/run_teleop_policy_loop.py --hand_control_device=pico --body_control_device=pico
+python gr00t_wbc/control/main/teleop/run_teleop_policy_loop.py --hand_control_device=isaac --body_control_device=isaac
 ```
 
-### Pico Setup and Controls
-Configure the teleop app on your Pico headset by following the [XR Robotics guidelines](https://github.com/XR-Robotics). 
+### XR Setup and Controls
 
-The necessary PC software is pre-installed in the Docker container. Only the [XRoboToolkit-PC-Service](https://github.com/XR-Robotics/XRoboToolkit-PC-Service) component is needed.
+Supported hardware:
+- [Pico 4 Ultra](https://www.picoxr.com/global/products/pico4-ultra)
+- [Meta Quest 3](https://www.meta.com/quest/quest-3)
 
-Prerequisites: Connect the Pico to the same network as the host computer.
+Prerequisites:
+- Early access to https://github.com/NVIDIA/IsaacTeleop
+- Connect the XR HMD to the same network as the host computer
 
 Controller bindings:
 - `menu + left trigger`: Toggle lower-body policy
@@ -97,9 +100,9 @@ Controller bindings:
 - `Right stick`: Yaw rotation
 - `L/R triggers`: Control hand grippers
 
-Pico unit test:
+Isaac Teleop unit test:
 ```bash
-python gr00t_wbc/control/teleop/streamers/pico_streamer.py
+python gr00t_wbc/control/teleop/streamers/isaac_streamer.py
 ```
 
 ---
@@ -116,8 +119,8 @@ python scripts/deploy_g1.py \
     --image-publish \
     --enable-offscreen \
     --env_name PnPBottle \
-    --hand_control_device=pico \
-    --body_control_device=pico
+    --hand_control_device=isaac \
+    --body_control_device=isaac
 ```
 
 The `tmux` session `g1_deployment` is created with panes for:
@@ -135,6 +138,6 @@ Operations in the `controller` window (`control_data_teleop` pane, left):
 Operations in the `data exporter` window (`control_data_teleop` pane, right top):
 - Enter the task prompt
 
-Operations on Pico controllers:
+Operations on XR controllers:
 - `A`: Start/Stop recording
 - `B`: Discard trajectory

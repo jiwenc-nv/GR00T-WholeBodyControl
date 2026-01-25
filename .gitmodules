@@ -1,0 +1,3 @@
+[submodule "external_dependencies/isaac_teleop"]
+	path = external_dependencies/isaac_teleop
+	url = https://github.com/NVIDIA/IsaacTeleop.git
