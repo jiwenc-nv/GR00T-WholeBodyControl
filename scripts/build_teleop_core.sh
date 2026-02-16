@@ -15,7 +15,8 @@ PYTHON_VERSION="3.10"
 PYTHON_ABI_CODE=$(echo $PYTHON_VERSION | tr -d .)
 PYTHON_ABI_NAME="cp$PYTHON_ABI_CODE-cp$PYTHON_ABI_CODE"
 
-TELEOPCORE_DIR="$GIT_ROOT/external_dependencies/isaac_teleop"
+# TeleopCore is at the Isaac workspace level (sibling to Gear/)
+TELEOPCORE_DIR="$GIT_ROOT/../../TeleopCore"
 TELEOPCORE_VERSION=$(cat "$TELEOPCORE_DIR/VERSION")
 
 # Build TeleopCore
